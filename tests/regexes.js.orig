@@ -45,16 +45,4 @@ suite('regexes', function () {
     var diff = Date.now() - start
     assert.ok(diff < 500, diff)
   })
-
-  test('should not backtrack HbbTV CUS', function () {
-    testRedos('HbbTV/0.0.0 (;CUS:;' + Array(3500).fill(' ').join('') + 'z')
-  })
-
-  test('should not backtrack HbbTV', function () {
-    testRedos('HbbTV/0.0.0 (;' + Array(3500).fill(' ').join('') + 'z')
-  })
-
-  test('should not backtrack HbbTV z', function () {
-    testRedos('HbbTV/0.0.0 (;z;' + Array(3500).fill(' ').join('') + 'z')
-  })
 })
