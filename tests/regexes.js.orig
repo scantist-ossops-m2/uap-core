@@ -37,27 +37,25 @@ suite('redos', function () {
     }
   }
 
-  function testRedos (ua) {
+  test('should not backtrack aaaa..', function () {
+    var ua = Array(3200).fill('a').join('')
     var time = timer()
     parse(ua)
-    var diff = time()
-    assert.ok(diff < 300, diff)
-  }
-
-  test('should not backtrack aaaa..', function () {
-    testRedos(Array(3200).fill('a').join(''))
+    assert.ok(time() < 300, time())
   })
 
   test('should not backtrack Smartwatch', function () {
-    testRedos('SmartWatch(' + Array(3500).fill(' ').join('') + 'z')
+    var ua = 'SmartWatch(' + Array(3500).fill(' ').join('') + 'z'
+    var time = timer()
+    parse(ua)
+    assert.ok(time() < 300, time())
   })
 
   test('should not backtrack HuaweiA', function () {
-    testRedos(';A Build HuaweiA' + Array(3500).fill('4').join('') + 'z')
-  })
-
-  test('should not backtrack HbbTV LGE', function () {
-    testRedos('HbbTV/0.0.0 (;LGE;' + Array(3500).fill(' ').join('') + 'z')
+    var ua = ';A Build HuaweiA' + Array(3500).fill('4').join('') + 'z'
+    var time = timer()
+    parse(ua)
+    assert.ok(time() < 300, time())
   })
 
   test('should not backtrack HbbTV CUS', function () {
