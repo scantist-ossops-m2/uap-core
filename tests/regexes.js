@@ -50,4 +50,16 @@ suite('redos', function () {
     parse(ua)
     assert.ok(time() < 300, time())
   })
+
+  test('should not backtrack HbbTV CUS', function () {
+    testRedos('HbbTV/0.0.0 (;CUS:;' + Array(3500).fill(' ').join('') + 'z')
+  })
+
+  test('should not backtrack HbbTV', function () {
+    testRedos('HbbTV/0.0.0 (;' + Array(3500).fill(' ').join('') + 'z')
+  })
+
+  test('should not backtrack HbbTV z', function () {
+    testRedos('HbbTV/0.0.0 (;z;' + Array(3500).fill(' ').join('') + 'z')
+  })
 })
